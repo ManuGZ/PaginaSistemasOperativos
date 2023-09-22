@@ -49,5 +49,15 @@ def guardar_eventos():
     return redirect('/eventos')
 
 
+@app.route('/ventas', methods=['POST'])
+def ventas_app():
+    conexion = mysql.connect()
+    cursor = conexion.cursor()
+    cursor.execute("SELECT * FROM sitio.eventos")
+    eventos = cursor.fetchall()
+    conexion.commit()
+    return render_template('ventas.html', eventos=eventos)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
