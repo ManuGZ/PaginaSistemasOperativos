@@ -259,7 +259,7 @@
 
   <label for="txtImagen">
     <input
-      placeholder="Seleccione la imagen"
+      placeholder="URL de la imagen"
       type="text"
       class="input"
       name="txtImagen"
@@ -278,6 +278,16 @@
       class="input"
     />
   </label>
+  <label for="txtPre">
+    <input
+      name="txtPre"
+      id="txtPre"
+      aria-describedby="helpId"
+      rows="3"
+      placeholder="Precio del boleto"
+      class="input"
+    ></input>
+  </label>
   <label for="txtDesc">
     <textarea
       name="txtDesc"
@@ -288,6 +298,7 @@
       class="input01"
     ></textarea>
   </label>
+  
 
   <button type="submit" class="fancy" href="#">
     <span class="top-key"></span>
@@ -301,7 +312,7 @@
   <thead>
     <tr>
       <th>Nombre</th>
-      <th>Imagen</th>
+      <th>Precio</th>
       <th>Descripcion</th>
       <th>Boletos</th>
     </tr>
@@ -310,7 +321,7 @@
     {% for evento in eventos %}
     <tr class="">
       <td>{{ evento[0]}}</td>
-      <td>{{ evento[1]}}</td>
+      <td>S/.{{ evento[4]}}</td>
       <td>{{ evento[2]}}</td>
       <td>{{ evento[3]}}</td>
     </tr>

@@ -97,7 +97,7 @@
 </style>
 
 <div class="container">
-  <form action="">
+  <form action="/ventas/exito" method="POST">
     <div class="row">
       <div class="col">
         <h3 class="title">Compra de boleto</h3>
@@ -105,7 +105,11 @@
         <div class="inputBox">
           <select name="nombre_eventos" id="nombre_eventos">
             {% for evento in eventos %}
-            <option value="{{ evento[0] }}" data-cantidad="{{ evento[3] }}">
+            <option
+              value="{{ evento[0] }}"
+              data-cantidad="{{ evento[3] }}"
+              data-precio="{{ evento[4] }}"
+            >
               {{ evento[0] }}
             </option>
             {% endfor %}
@@ -115,25 +119,30 @@
           <span id="cantidad_boletos"
             >Cantidad de boletos(Disponible: {{ eventos[0][3] }}) :</span
           >
-          <input type="email" placeholder="example@example.com" />
+          <input
+            type="cantidad_boletos"
+            id="cantidad_boletos"
+            name="cantidad_boletos"
+            placeholder="Cantidad de boletos"
+          />
         </div>
         <div class="inputBox">
           <span>Correo Electronico :</span>
-          <input type="text" placeholder="Direccion" />
+          <input name="correo_" type="text" placeholder="Correo electronico" />
         </div>
         <div class="inputBox">
           <span>Ciudad :</span>
-          <input type="text" placeholder="Ciudad" />
+          <input name="ciudad_" type="text" placeholder="Ciudad" />
         </div>
 
         <div class="flex">
           <div class="inputBox">
             <span>Distrito :</span>
-            <input type="text" placeholder="Distrito" />
+            <input name="distrito_" type="text" placeholder="Distrito" />
           </div>
           <div class="inputBox">
             <span>Codigo Postal :</span>
-            <input type="text" placeholder="123456" />
+            <input name="codigo_postal" type="text" placeholder="123456" />
           </div>
         </div>
       </div>
@@ -171,7 +180,12 @@
       </div>
     </div>
 
-    <input type="submit" value="proceed to checkout" class="submit-btn" />
+    <input
+      type="submit"
+      value="Proceed to Checkout"
+      class="submit-btn"
+      id="checkoutButton"
+    />
   </form>
 </div>
 
@@ -179,7 +193,6 @@
   document.addEventListener("DOMContentLoaded", function () {
     var selectEvento = document.getElementById("nombre_eventos");
     var cantidadBoletosSpan = document.getElementById("cantidad_boletos");
-
     //Para que pueda variar la cantidad de boletos segun el evento que quiera
     selectEvento.addEventListener("change", function () {
       var selectedOption = selectEvento.options[selectEvento.selectedIndex];
